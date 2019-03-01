@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="js/index.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body onload="carga()">
+
+	<!-- Sección pantalla de carga -->
+
+	<section id="pantalla_carga">
+
+	</section>
+
+	<!-- Sección introductoria -->
+
+	<section id="pantalla_introduccion">
+		<img id="personaje" src="img/Personaje.png">
+		<div>
+			<p id="intro">
+				Hola soy Kairi! necesito de tu ayuda para rescatar a estos animales del océano que
+				están en peligro por la contaminación.
+			</p>
+			<p id="intro2">
+				¡Únete a salvar la vida de estos animales!
+			</p>
+		</div>
+		<img id="btnCreditos" src="img/botoncreditos.png" onclick="btnCreditos();"/>
+		<!-- <input type="button" id="btnCreditos" class="button_tool_cred" onclick="alerta();"> -->
+		<img id="btnPlay" src="img/Botonplay.png" onclick="btnPlay();">
+		<!-- <input type="button" id="btnPlay" class="button_tool_play"><br><br><br><br><br> -->
+		<label id="lblCreditos" class="lblBotones">Créditos</label>
+		<label id="lblJugar" class="lblBotones">Jugar</label>
+	</section>
+
+	<!-- Sección de los créditos -->
+
+	<section id="creditos">
+		<div id="diseñadora">
+			<h1>Diseñadora</h1>
+			<label>Manuela Giraldo Giraldo</label>
+		</div>
+		<div id="desarrolladores">
+			<h1>Desarrolladores</h1>
+			<label>Sebastián Loaiza Henao</label><br>
+			<label>Juan José Brand Londoño</label>
+		</div>
+		<img id="btnInicioCred" src="img/boton-inicio-creditos.png" onclick="btnHome();"><br>
+		<label id="lblInicioCred" class="lblBotones">Inicio</label>
+	</section>
+
+	<!-- Sección juego tortuga -->
+
+	<section id="pantalla_tortuga" class="juego">
+		<div class="menu">
+				<div id="lightbox" class="ocultar">
+					<div id="ventanaModal">
+						<p id="mensaje">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<input type="button" id="btnCerrar" value="Ok">
+					</div>
+				</div>
+			<img class="btnInicio" src="img/Boton-inicio-juego.png" onclick="btnHome();">
+			<div class="puntaje"></div>
+			<div class="tiempo">
+				<div>
+					<span id="segundos">0</span>
+				</div>
+			</div>
+			<img class="btnPausa" src="img/Boton-pausa.png" onclick="btnPausa();">
+		</div>
+
+		<div id="tortuga">
+			<!-- <img id="pausaTortuga" src="img/Fondo-pausa.png"> -->
+		</div>
+
+		<div class="buttons_tools1">
+			<img class="btnPinzas" src="img/Boton-pinzas.png">
+			<img class="btnEncendedor" src="img/boton-encendedor.png">
+			<img class="btnCoser" src="img/Boton-coser.png">
+			<img class="btnCrema" src="img/Boton-crema.png">
+			<img class="btnBisturi" src="img/Boton-bistiru.png">
+		</div>
+	</section>
+
+	<!-- Sección Juego foca -->
+
+	<section id="pantalla_foca" class="juego">
+		<div class="menu">
+			<img class="btnInicio" src="img/Boton-inicio-juego.png">
+			<div class="puntaje"></div>
+			<div class="tiempo">
+				<div>
+					<span id="segundos2">0</span>
+				</div>
+			</div>
+			<img class="btnPausa" src="img/Boton-pausa.png">
+		</div>
+
+		<div id="foca"></div>
+
+		<div class="buttons_tools1">
+			<img class="btnPinzas" src="img/Boton-pinzas.png">
+			<img class="btnEncendedor" src="img/boton-encendedor.png">
+			<img class="btnCoser" src="img/Boton-coser.png">
+			<img class="btnCrema" src="img/Boton-crema.png">
+			<img class="btnBisturi" src="img/Boton-bistiru.png">
+		</div>
+	</section>
+
+	<!-- Sección juego ballena -->
+
+	<section id="pantalla_ballena" class="juego">
+		<div class="menu">
+			<img class="btnInicio" src="img/Boton-inicio-juego.png">
+			<div class="puntaje"></div>
+			<div class="tiempo">
+				<div>
+					<span id="segundos3">0</span>
+				</div>
+			</div>
+			<img class="btnPausa" src="img/Boton-pausa.png">
+		</div>
+
+		<div id="ballena"></div>
+
+		<div class="buttons_tools1">
+			<img class="btnPinzas" src="img/Boton-pinzas.png">
+			<img class="btnEncendedor" src="img/boton-encendedor.png">
+			<img class="btnCoser" src="img/Boton-coser.png">
+			<img class="btnCrema" src="img/Boton-crema.png">
+			<img class="btnBisturi" src="img/Boton-bistiru.png">
+		</div>
+	</section>
+
+	<!-- Sección historia de la tortuga -->
+
+	<section id="historia_tortuga">
+		<div>
+			<img id="btnInicioHist" src="img/Boton-inicio-historias.png">
+			<img id="btnVolverHist" src="img/Boton-volvera-jugar-historias.png">
+		</div>
+		<p class="txtHistorias1">
+			Hola soy Flopy! Gracias por haber salvado mi 
+			vida. En los ultimos años los animales hemos 
+			estado muy afectados por la contaminación 
+			que cada vez aumenta en los océanos.
+		</p>
+		<p class="txtHistorias2">
+			¡Ayuda a cuidar tu planeta usando menos plástico y 
+			generando menos desechos para que estos no lleguen a 
+			los océanos!
+		</p>
+	</section>
+
+	<!-- Sección historia de la foca -->
+
+	<section id="historia_foca">
+		<div>
+			<img id="btnInicioHist" src="img/Boton-inicio-historias.png">
+			<img id="btnVolverHist" src="img/Boton-volvera-jugar-historias.png">
+		</div>
+		<p class="txtHistorias1">
+			Hola soy Kai! Gracias por haber salvado mi 
+			vida. En los ultimos años los animales hemos 
+			estado muy afectados por la contaminación 
+			que cada vez aumenta en los oceános.
+		</p>
+		<p class="txtHistorias2">
+			¡Ayuda a cuidar tu planeta a usar más productos orgánicos 
+			y no generar tantos desperdicios 
+			químicos!
+		</p>
+	</section>
+
+	<!-- Sección historia de la ballena -->
+	
+	<section id="historia_ballena">
+		<div>
+			<img id="btnInicioHist" src="img/Boton-inicio-historias.png">
+			<img id="btnVolverHist" src="img/Boton-volvera-jugar-historias.png">
+		</div>
+		<p class="txtHistorias1">
+			Hola soy Dalia! Gracias por haber salvado mi 
+			vida. En los ultimos años los animales hemos 
+			estado muy afectados por la contaminación 
+			que cada vez aumenta en los oceános.
+		</p>
+		<p class="txtHistorias2">
+			¡Ayuda a cuidar tu planeta ahorrando la mayor 
+			cantidad de agua posible!
+		</p>
+	</section>
+</body>
+</html>
