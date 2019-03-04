@@ -3,219 +3,12 @@ html{
 	margin: 0px;
 }
 
-.ocultar{
-	display: none;
-}
-
-.mostrar{
-	display: block;
-}
 
 body{
 	margin: 0px;
 	padding: 0px;
 }
 
-#pantalla_carga{
-	background: url(../img/pantallacarga.png);
-	height: 580px; 
-}
-
-#pantalla_introduccion{
-	background: url(../img/fondo.png);
-	height: 580px;
-	/* display: none; */
-}
-
-#creditos{
-	background-image: url(../img/Pantallas-creditos.png);
-	height: 580px;
-	display: none;
-}
-
-#pantalla_tortuga{
-	display: none;
-}
-
-#pantalla_foca{
-	display: none;
-}
-
-#pantalla_ballena{
-	display: none;
-}
-
-#historia_tortuga{
-	display: none;
-}
-
-#historia_foca{
-	display: none;
-}
-
-#historia_ballena{
-	display: none;
-}
-
-#personaje{
-	padding-left: 67px;
-	padding-top: 90px;
-}
-
-#intro{
-	font-family: Arial;
-	margin: 25px;
-	font-size: 14.55px;
-	color: white;
-	text-align: center;
-}
-
-#intro2{
-	font-family: 'Arial Narrow';
-	font-size: 12.04px;
-	color: white;
-	width: 130px;
-	text-align: center;
-	padding-left: 110px;
-}
-
-.button_tool_cred{
-	position: absolute;				
-	border:none;
-	background:none;
-	background-repeat: no-repeat;
-	width:95px;
-	/* border-radius:20px; */
-	height:85px;
-	margin-left: 48px;
-}
-
-#btnCreditos{
-	padding-left: 50px;
-}
-
-#btnPlay{
-	padding-left: 68px;
-}
-
-.lblBotones{
-	font-family: Arial;
-	font-size: 13px;
-	color: white;
-}
-
-#lblCreditos{
-	padding-left: 70px;
-}
-
-#lblJugar{
-	padding-left: 130px;
-}
-
-#diseñadora{
-	font-family: Arial;
-	font-size: 20px;
-	color: white;
-	padding-top: 145px;
-	text-align: center;
-}
-
-#desarrolladores{
-	font-family: Arial;
-	font-size: 20px;
-	color: white;
-	text-align: center;
-}
-
-#btnInicioCred{
-	padding-top: 60px;
-	padding-left: 135px;
-
-}
-
-#lblInicioCred{
-	padding-left: 156px;
-}
-
-#historia_tortuga{
-	background: url(../img/Fondo-tortuga.png);
-	height: 580px;
-}
-
-#historia_foca{
-	background: url(../img/Fondo-foca.png);
-	height: 580px;
-}
-
-#historia_ballena{
-	background: url(../img/fondo-ballena.png);
-	height: 580px;
-}
-
-#btnInicioHist{
-	padding-top: 10px;
-	padding-left: 20px;
-}
-
-#btnVolverHist{
-	padding-top: 10px;
-	padding-left: 170px;
-}
-
-.txtHistorias1{
-	padding-top: 5px;
-	font-family: Arial;
-	font-size: 13.37px;
-	color: #333333;
-	text-align: justify;
-	margin: 30px;
-}
-
-.txtHistorias2{
-	padding-top: 5px;
-	font-family: 'Arial Narrow';
-	font-size: 12.4px;
-	color: #4D4D4D;
-	text-align: center;
-	margin: 30px;
-	font-style: oblique;
-}
-
-#lightbox{
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	background: rgba(0, 0, 0, .6);
-	width: 100%;
-	height: 100%;
-	margin: 0px;
-	padding: 0px;
-	z-index: 2;
-	/*display: none;*/
-}
-
-#ventanaModal{
-	width: 400px;
-	height: 200px;
-	background: black;
-	color: white;
-	border-radius: 15px;
-	margin: 0 auto;
-	padding: 10px;
-	margin-top: 100px;
-	text-align: center;
-	border: 1px solid white;
-}
-
-#ventanaModal p{
-	text-align: left;
-}
-
-#btnCerrar{
-	width: 70px;
-	height: 30px;
-
-}
 
 /* Juan José Brand Londoño */
 
@@ -223,99 +16,106 @@ body{
 	background-image: url("../img/Fondo-juego.png");
 	height: 580px;
 	width: 360px;
+	position: absolute;
 }
+
 .menu{
-	height: 115px;
+	height: 73px;
 	width: 360px;
-}
-.inicio{
-	width:78px;
-	height:60px;
-	padding-left: 20px;
-	padding-top:20px;
+	position: absolute;
 }
 
 .btnInicio{
-	padding-top: 5px;
-	padding-left: 5px;
+ 	position: absolute;
+    top: 5px;
+    left: 8px;
 }
 
 .btnPausa{
-	padding-top:5px;
+    position: absolute;
+    top: 5px;
+    left: 278px;
+}
+.indicadores{
 	position: absolute;
-	width: 75px;
+	display: inline-block;
+	background-repeat: no-repeat;
+    height: 48px;
+    width: 89px;
+	top: 21px;
 }
 
 .puntaje{
 	background-image: url("../img/Boton-puntaje.png");
-	position: relative;
-	display: inline-block;
-	background-repeat: no-repeat;
-	height: 55px;
-	padding-left: 95px;
+	left: 183px;
 }
 .tiempo{
 	background-image: url("../img/Boton-tiempo.png");
-	position: relative;
-	display: inline-block;
-	background-repeat: no-repeat;
-	height: 55px;
-	padding-left: 95px;
+	left: 91px;
 }
 
-#tortuga{
-	height:33px;
-	background-image: url("../img/Tortuga.png");
-	background-size: 100%;
-	background-repeat: no-repeat;
-	position: relative;
-	padding-left: 131px;
-	padding-top: 270px;
-	width: 114px;
-	margin: auto;
+.valores{
+	position: absolute;
+	left: 20px;
+    top: 12px;
 }
 
-#foca{
-	background-image: url("../img/Foca.png");
-	background-size: 100%;
-	background-repeat: no-repeat;
-	position: relative;
-	padding-left: 131px;
-	padding-top: 257px;
-	width: 125px;
-	margin-top: 40px;
-	margin-left: 52px;
-}
-
-#ballena{
-	height:77px;
-	background-image: url("../img/Ballena.png");
-	background-size: 62%;
-	background-repeat: no-repeat;
-	position: relative;
-	padding-left: 131px;
-	padding-top: 221px;
-	width: 125px;
-	margin-top: 6pxpx;
-	margin-left: auto;
-}
-
-#pausaTortuga{
-	position:absolute;
-	/* background-image: url(../img/Fondo-pausa.png); */
-	margin: -189px;
-	display: none;
+.camilla{
+	position: absolute;
+    top: 93px;
+    left: 52px;
+    width: 258px;
+    height: 349px;
+    border-radius: 59px 25px 41px 22px;
+    background-repeat: no-repeat;
 }
 
 .buttons_tools1{
-	padding-top: 43px;
-	height: 115px;;
+	position: absolute;
+	top: 0px;
+}
+.buttons_tools2{
+	position: absolute;
+	top: 45px;
+}
+.button_tool{
+	position: absolute;
+	background:none;
+	border: none;
+    height: 55px;
+    width: 74px;
+	display: inline;
+}
+#button1{
+    background-image:  url("../img/Boton-bistiru.png");
+	background-repeat: no-repeat;
+	left:32px;
+}
+#button2{
+	background-image:  url("../img/Boton-coser.png");
+	background-repeat: no-repeat;
+	left:143px;
+}
+#button3{
+	background-image:  url("../img/Boton-crema.png");
+	background-repeat: no-repeat;
+	left:254px;
+}
+#button4{
+	background-image:  url("../img/boton-encendedor.png");
+	background-repeat: no-repeat;
+	left:83px;
+}
+#button5{
+	background-image:  url("../img/Boton-pinzas.png");
+	background-repeat: no-repeat;
+	left:193px;
 }
 
-span{
+.buttonsTools{
 	position: absolute;
-	right: 40px;
-	top: 12px;
+	top: 471px;
+	height: 115px;;
 }
 
 .btnPinzas{
@@ -336,4 +136,45 @@ span{
 
 .btnBisturi{
 	padding-left: 45px;
+}
+
+.tortuga{
+	background-image: url("../img/Tortuga.png");
+}
+.ballena{
+	background-image: url("../img/Ballena.png");
+}
+.foca{
+	background-image: url("../img/Foca.png");
+}
+.btnsHeridas{
+	margin: 5px;
+	background:none;
+	border:none;
+}
+
+.heridasTortuga{
+    position: absolute;
+    left: 19px;
+    top: 77px;
+    width: 188px;
+    height: 186px;
+    border-radius: 63px 69px 79px 88px;
+
+}
+.heridasFoca{
+	position: absolute;
+    left: 51px;
+    top: 12px;
+    width: 71px;
+    height: 186px;
+    border-radius: 24px 22px 20px 47px;
+}
+.heridasBallena{
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    width: 159px;
+    height: 186px;
+    border-radius: 67px 72px 7px 140px;
 }
