@@ -9,6 +9,7 @@ var heridasCtd;
 var camilla;
 var puntaje = 0;
 var heridaCurar;
+var vistaPuntage;
 
 function inicio(){
     inicializarVariables();
@@ -16,22 +17,24 @@ function inicio(){
     verAnimales(0);
     verHeridas(0);
     asignarEventosHerramientas();
+    verPuntaje();
 }
 
 function inicializarVariables(){
     camilla = document.getElementById("camilla");
     heridasCtd = document.getElementById("heridasCtd");
-    heridas.push(new herida("p", "img/imgHeridas/basura2Ballena.png",5, "ballena"));
-    heridas.push(new herida("p", "img/imgHeridas/basuraBallena.png", 6, "ballena"));
-    heridas.push(new herida("p", "img/imgHeridas/basuraFoca.png", 4, "foca"));
-    heridas.push(new herida("b", "img/imgHeridas/basuraTortuga.png", 6, "tortuga"));
-    heridas.push(new herida("a", "img/imgHeridas/Cortada.png", 3, "todos"));
-    heridas.push(new herida("c", "img/imgHeridas/herida1.png", 4, "todos"));
-    heridas.push(new herida("e", "img/imgHeridas/Herida2.png", 3, "todos"));
-    heridas.push(new herida("a", "img/imgHeridas/herida4.png", 3, "todos"));
-    heridas.push(new herida("p", "img/imgHeridas/PaloTortuga.png", 3, "tortuga"));
-    heridas.push(new herida("c", "img/imgHeridas/Quemadura2.png", 3, "todos"));
-    heridas.push(new herida("p", "img/imgHeridas/VidrioTortuga.png", 7, "tortuga"));
+    vistaPuntage = document.getElementById("vistaPuntage");
+    heridas.push(new herida("p", "img/imgHeridas/basura2Ballena.png", "ballena"));
+    heridas.push(new herida("p", "img/imgHeridas/basuraBallena.png",  "ballena"));
+    heridas.push(new herida("p", "img/imgHeridas/basuraFoca.png", "foca"));
+    heridas.push(new herida("b", "img/imgHeridas/basuraTortuga.png", "tortuga"));
+    heridas.push(new herida("a", "img/imgHeridas/Cortada.png", "todos"));
+    heridas.push(new herida("c", "img/imgHeridas/herida1.png", "todos"));
+    heridas.push(new herida("e", "img/imgHeridas/Herida2.png", "todos"));
+    heridas.push(new herida("a", "img/imgHeridas/herida4.png", "todos"));
+    heridas.push(new herida("p", "img/imgHeridas/PaloTortuga.png", "tortuga"));
+    heridas.push(new herida("c", "img/imgHeridas/Quemadura2.png", "todos"));
+    heridas.push(new herida("p", "img/imgHeridas/VidrioTortuga.png", "tortuga"));
     randomAnima.push(new animalHerido("tortuga","img/Tortuga.png","heridasTortuga"));
     randomAnima.push(new animalHerido("ballena","img/Ballena.png","heridasBallena"));
     randomAnima.push(new animalHerido("foca","img/Foca.png","heridasFoca"));
@@ -74,20 +77,38 @@ function verAnimales(animal){
 }
 function verHeridas(animal){
     heridas = shuffle(heridas);
-    var temp;
+    var documentText = "";
+    var temp = [];
     for (const key in heridas) {
         if(randomAnima[animal].nombre == heridas[key].animal || "todos" == heridas[key].animal){
-            heridasCtd.innerHTML = "<button onclick='tratarHerida(+heridas[key].herramienta+"')' class='btnsHeridas'><img src='"+heridas[key].urlImg+"'></button>"+heridasCtd.innerHTML;
-            //temp = document.getElementById(heridas[key].urlImg);
-            //temp.puntaje = heridas[key].puntos;
-            //temp.herramienta = heridas[key].herramienta;
-            //temp.addEventListener("click",tratarHerida);
-            //btnHeridas.push(temp);
+            documentText += "<button class='btnsHeridas' id='"+heridas[key].urlImg+"'><img src='"+heridas[key].urlImg+"'></button>";
+            temp.push(heridas[key]);
         }else{
 
         }
     }
-   // asignarEventosHeridas();
+    heridasCtd.innerHTML = documentText;
+    crearBotonesHeridas(temp);
+}
+
+function crearBotonesHeridas(array){
+    for (const key in array) {
+        btnHeridas[key] = document.getElementById(array[key].urlImg);
+        btnHeridas[key].addEventListener("click",(valor = 1, herramienta =  array[key].herramienta, boton = btnHeridas[key]  )=>{
+                    if(heridaCurar ==  herramienta){
+                        puntaje+= 1000;
+
+                        boton.style.visibility = "hidden";
+                        
+                    }else{
+                         puntaje-= 1000;
+                         //console.log(puntos);
+                    }
+                heridaCurar = "";
+                verPuntaje();
+                } 
+            );
+    }
 }
 
 function asignarEventosHerramientas(){
@@ -95,31 +116,27 @@ function asignarEventosHerramientas(){
         botones[key].addEventListener("click",elegirHerramienta);
     }
 }
-
-function tratarHerida(herramienta){
-    if(heridaCurar == herramienta){
-        puntaje+= 1;
-        //console.log(puntos);
-    }else{
-         puntaje-= 1;
-         //console.log(puntos);
-    }
-    heridaCurar = "";
-}
+ 
+ 
 function elegirHerramienta(){
     heridaCurar = event.target.herramienta;
     //console.log();
 }
+function verPuntaje(){
+    vistaPuntage.innerHTML = "<span class='valores'>"+puntaje+"</span>";
+    
+}
+
+
 
 function animalHerido(nombre,url,contenedorHeridas){
     this.nombre = nombre;
     this.url = url;
     this.contenedorHeridas = contenedorHeridas;
 }
-function herida(herramienta, urlImg, puntos,animal){
+function herida(herramienta, urlImg,animal){
     this.herramienta = herramienta;
     this.urlImg = urlImg;
-    this.puntos = puntos;
     this.animal = animal;
     //this.boton = 
 }
