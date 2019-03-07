@@ -85,27 +85,6 @@
 			</div>
 		</div>
 
-		<!-- <div class="menu">	
-			<img class="btnInicio animated heartBeat" src="img/Boton-inicio-juego.png" onclick="cambioSeccion('pantalla_introduccion')">
-			<div class="puntaje"></div>
-			<div class="tiempo">
-				<span id="segundos">0</span>
-			</div>
-			<img class="btnPausa animated heartBeat" src="img/Boton-pausa.png" onclick="btnPausa();">
-		</div>
-
-		<div id="camilla" class="camilla">
-			<div id="heridasCtd"></div>
-		</div>
-
-		<div class="buttons_tools1">
-			<img id="btnPinzas" class="animated heartBeat" src="img/Boton-pinzas.png">
-			<img id="btnEncendedor" class="animated heartBeat" src="img/boton-encendedor.png">
-			<img id="btnCoser" class="animated heartBeat" src="img/Boton-coser.png">
-			<img id="btnCrema" class="animated heartBeat" src="img/Boton-crema.png">
-			<img id="btnBisturi" class="animated heartBeat" src="img/Boton-bistiru.png">
-		</div> -->
-
 		<div class="menu">
 			<img class="btnInicio animated heartBeat" src="img/Boton-inicio-juego.png" onclick="cambioSeccion('pantalla_introduccion')">
 			<div class="indicadores puntaje" id="vistaPuntage"></div>
@@ -119,6 +98,10 @@
 			<div id="heridasCtd" class="">
 			</div>
 		</div>
+
+		<!-- <div id="ganaste">
+			<img src="im" alt="">
+		</div> -->
 
 		<div class="buttonsTools">
 			<div class="buttons_tools1">
@@ -189,7 +172,7 @@
 	<section id="historia_tortuga" class="tab">
 		<div>
 			<img id="btnInicioHist" src="img/Boton-inicio-historias.png">
-			<img id="btnVolverHist" src="img/Boton-volvera-jugar-historias.png">
+			<img id="btnVolverHist" src="img/Boton-volvera-jugar-historias.png" onclick="volverJuego();">
 		</div>
 		<p class="txtHistorias1">
 			Hola soy Flopy! Gracias por haber salvado mi 
@@ -209,7 +192,7 @@
 	<section id="historia_foca" class="tab">
 		<div>
 			<img id="btnInicioHist" src="img/Boton-inicio-historias.png">
-			<img id="btnVolverHist" src="img/Boton-volvera-jugar-historias.png">
+			<img id="btnVolverHist" src="img/Boton-volvera-jugar-historias.png" onclick="volverJuego();">
 		</div>
 		<p class="txtHistorias1">
 			Hola soy Kai! Gracias por haber salvado mi 
@@ -229,7 +212,7 @@
 	<section id="historia_ballena" class="tab">
 		<div>
 			<img id="btnInicioHist" src="img/Boton-inicio-historias.png">
-			<img id="btnVolverHist" src="img/Boton-volvera-jugar-historias.png">
+			<img id="btnVolverHist" src="img/Boton-volvera-jugar-historias.png" onclick="volverJuego();">
 		</div>
 		<p class="txtHistorias1">
 			Hola soy Dalia! Gracias por haber salvado mi 

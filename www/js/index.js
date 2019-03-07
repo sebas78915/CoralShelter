@@ -68,7 +68,6 @@ function inicializarVariables(){
 }
 
 function btnPausa(){
-    s.innerHTML = 0;
     lightbox.className="mostrar animated fadeIn";
     play_pausa.addEventListener("click",()=>{
         lightbox.className="ocultar animated fadeOut";
@@ -76,6 +75,9 @@ function btnPausa(){
     reinicio_pausa.addEventListener("click",()=>{
         lightbox.className="ocultar animated fadeOut";
         cont_s=0;
+        randomAnimales();
+        verAnimales(posicionAnimal);
+        asignarEventosHerramientas();
     });
 
     home_pausa.addEventListener("click", ()=>{
@@ -92,7 +94,7 @@ function carga(){
         cont_s = 2;
         
         window.setInterval(function(){
-            s.innerHTML = cont_s-1;
+            s.innerHTML = cont_s;
             tiempo = cont_s;
             cont_s++;
             if (cont_s==5) {
@@ -149,7 +151,8 @@ function shuffle(array) {
      camilla.style.background = "url('"+randomAnima[animal].url+"') no-repeat";
      heridasCtd.className = randomAnima[animal].contenedorHeridas;
      heridasCtd.innerHTML = "";
-    verHeridas(animal);     
+    verHeridas(animal); 
+    countHeridas = 0;
   }
   function verHeridas(animal){
       heridas = shuffle(heridas);
@@ -168,6 +171,7 @@ function shuffle(array) {
   }
   
   function crearBotonesHeridas(array){
+    btnHeridas = [];
       for (const key in array) {
           btnHeridas[key] = document.getElementById(array[key].urlImg);
           btnHeridas[key].addEventListener("click",(valor = 1, herramienta =  array[key].herramienta, boton = btnHeridas[key]  )=>{
@@ -189,7 +193,8 @@ function shuffle(array) {
                 }
             heridaCurar = "";
             verPuntaje();
-            verHistoria(randomAnima[posicionAnimal].nombre)
+            verHistoria(randomAnima[posicionAnimal].nombre);
+
             } 
         );}
   }
@@ -202,21 +207,31 @@ function shuffle(array) {
    
 
    function verHistoria(animal){
+        
        if (btnHeridas.length == countHeridas) {
+            
           var temp = "";
             if (animal == "tortuga") {
-              temp = "historia_tortuga"
+              temp = "historia_tortuga";
             }
             if (animal == "foca") {
-              temp = "historia_foca"
+              temp = "historia_foca";
             }
             if (animal == "ballena") {
-              temp = "historia_ballena"
+              temp = "historia_ballena";
             }
-            setTimeout(cambioSeccion(temp),2000);
         }else{
 
         }
+   }
+
+   function volverJuego(){
+        cambioSeccion('pantalla_juego');
+        if(posicionAnimal == 2){
+            posicionAnimal = -1;
+        }
+        verAnimales(posicionAnimal+=1);
+        puntaje = 0;
    }
    
   function elegirHerramienta(event){
