@@ -379,7 +379,7 @@ span{
 	display: inline;
 }
 #button1{
-    background-image:  url("../img/Boton-bistiru.png");
+	background-image:  url("../img/Boton-pinzas.png");
 	background-repeat: no-repeat;
 	left:32px;
 }
@@ -389,17 +389,17 @@ span{
 	left:143px;
 }
 #button3{
-	background-image:  url("../img/Boton-crema.png");
+	background-image:  url("../img/boton-encendedor.png");
 	background-repeat: no-repeat;
 	left:254px;
 }
 #button4{
-	background-image:  url("../img/boton-encendedor.png");
+	background-image:  url("../img/Boton-crema.png");
 	background-repeat: no-repeat;
 	left:83px;
 }
 #button5{
-	background-image:  url("../img/Boton-pinzas.png");
+    background-image:  url("../img/Boton-bistiru.png");
 	background-repeat: no-repeat;
 	left:193px;
 }
