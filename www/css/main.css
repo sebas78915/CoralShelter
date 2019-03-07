@@ -1,6 +1,7 @@
 /* Sebastián Loaiza Henao */
 html{
 	margin: 0px;
+	margin-bottom: 0px;
 }
 
 .ocultar{
@@ -13,36 +14,52 @@ html{
 
 body{
 	margin: 0px;
+	margin-bottom: 0px;
 	padding: 0px;
+	background-color: #610B4B;
 }
 
 #pantalla_carga{
 	background: url(../img/pantallacarga.png);
+	background-repeat: no-repeat;
 	height: 580px; 
 }
 
 #pantalla_introduccion{
 	background: url(../img/fondo.png);
+	background-repeat: no-repeat;
 	height: 580px;
 	/* display: none; */
 }
 
 #creditos{
 	background-image: url(../img/Pantallas-creditos.png);
+	background-repeat: no-repeat;
 	height: 580px;
 	display: none;
 }
 
-#pantalla_tortuga{
+#ayuda{
+	background-image: url(../img/fondo-ayuda.png);
+	height: 580px;
 	display: none;
 }
 
-#pantalla_foca{
-	display: none;
+#tools{
+	padding-top: 105px;
+	padding-left: 32px;
 }
 
-#pantalla_ballena{
-	display: none;
+#coser{
+	padding-left: 79px;
+}
+
+#btnInicioAyuda{
+	padding-left: 145px;
+}
+
+.tamaños{
+	width: 150px;
 }
 
 #historia_tortuga{
@@ -91,11 +108,7 @@ body{
 }
 
 #btnCreditos{
-	padding-left: 50px;
-}
-
-#btnPlay{
-	padding-left: 68px;
+	padding-left: 35px;
 }
 
 .lblBotones{
@@ -105,11 +118,20 @@ body{
 }
 
 #lblCreditos{
-	padding-left: 70px;
+	padding-left: 55px;
+}
+
+#lblAyuda{
+	padding-left: 57px;
 }
 
 #lblJugar{
-	padding-left: 130px;
+	padding-left: 61px;
+}
+
+#lblInicioAyuda{
+	padding-left: 168px;
+	display: block;
 }
 
 #diseñadora{
@@ -137,18 +159,30 @@ body{
 	padding-left: 156px;
 }
 
+span{
+	position: absolute;
+	right: 40px;
+	top: 12px;
+	font-family: Arial;
+	color: white;
+	font-weight: bold;
+}
+
 #historia_tortuga{
 	background: url(../img/Fondo-tortuga.png);
+	background-repeat: no-repeat;
 	height: 580px;
 }
 
 #historia_foca{
 	background: url(../img/Fondo-foca.png);
+	background-repeat: no-repeat;
 	height: 580px;
 }
 
 #historia_ballena{
 	background: url(../img/fondo-ballena.png);
+	background-repeat: no-repeat;
 	height: 580px;
 }
 
@@ -191,24 +225,59 @@ body{
 	margin: 0px;
 	padding: 0px;
 	z-index: 2;
-	/*display: none;*/
+}
+
+#lightboxPerdiste{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: rgba(0, 0, 0, .6);
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	z-index: 2;
 }
 
 #ventanaModal{
-	width: 400px;
-	height: 200px;
-	background: black;
-	color: white;
-	border-radius: 15px;
-	margin: 0 auto;
-	padding: 10px;
-	margin-top: 100px;
-	text-align: center;
-	border: 1px solid white;
+	/* padding-top: 135px; */
+	height: 224px;
+	background-image: url(../img/Fondo-pausa.png);
+	background-repeat: no-repeat;
 }
 
-#ventanaModal p{
-	text-align: left;
+#ventanaPerdiste{
+	padding-top: 160px;
+	height: 128px;
+	background-image: url(../img/Fondo-perdiste.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	width: 310px;
+	top: 90px;
+	left: 30px;
+}
+
+#play_pausa{
+	padding-top: 43px;
+	padding-left: 5px;
+}
+
+#reinicio_pausa{
+	padding-top: 43px;
+	/* padding-left: 5px; */
+}
+
+#inicio_perdiste{
+	padding-left: 10px;
+}
+
+#reinicio_perdiste{
+	padding-left: 90px;
+}
+
+#home_pausa{
+	padding-top: 43px;
+	width: 114px;
 }
 
 #btnCerrar{
@@ -223,11 +292,15 @@ body{
 	background-image: url("../img/Fondo-juego.png");
 	height: 580px;
 	width: 360px;
+	position: absolute;
+	display: none;
 }
 .menu{
-	height: 115px;
+	height: 73px;
 	width: 360px;
+	position: absolute;
 }
+
 .inicio{
 	width:78px;
 	height:60px;
@@ -236,104 +309,147 @@ body{
 }
 
 .btnInicio{
-	padding-top: 5px;
-	padding-left: 5px;
+	position: absolute;
+   top: 5px;
+   left: 8px;
 }
 
 .btnPausa{
-	padding-top:5px;
-	position: absolute;
-	width: 75px;
+    position: absolute;
+    top: 5px;
+    left: 278px;
 }
 
 .puntaje{
 	background-image: url("../img/Boton-puntaje.png");
-	position: relative;
-	display: inline-block;
-	background-repeat: no-repeat;
-	height: 55px;
-	padding-left: 95px;
+	left: 183px;
 }
+
 .tiempo{
 	background-image: url("../img/Boton-tiempo.png");
-	position: relative;
+	left: 91px;
+}
+
+.indicadores{
+	position: absolute;
 	display: inline-block;
 	background-repeat: no-repeat;
-	height: 55px;
-	padding-left: 95px;
+    height: 55px;
+    width: 100px;
+	top: 21px;
 }
 
-#tortuga{
-	height:33px;
-	background-image: url("../img/Tortuga.png");
-	background-size: 100%;
-	background-repeat: no-repeat;
-	position: relative;
-	padding-left: 131px;
-	padding-top: 270px;
-	width: 114px;
-	margin: auto;
+.valores{
+	position: absolute;
+	left: 20px;
+    top: 12px;
 }
 
-#foca{
-	background-image: url("../img/Foca.png");
-	background-size: 100%;
-	background-repeat: no-repeat;
-	position: relative;
-	padding-left: 131px;
-	padding-top: 257px;
-	width: 125px;
-	margin-top: 40px;
-	margin-left: 52px;
+.camilla{
+	position: absolute;
+    top: 93px;
+    left: 52px;
+    width: 258px;
+    height: 349px;
+    border-radius: 59px 25px 41px 22px;
+    background-repeat: no-repeat;
 }
 
-#ballena{
-	height:77px;
-	background-image: url("../img/Ballena.png");
-	background-size: 62%;
-	background-repeat: no-repeat;
-	position: relative;
-	padding-left: 131px;
-	padding-top: 221px;
-	width: 125px;
-	margin-top: 6pxpx;
-	margin-left: auto;
-}
-
-#pausaTortuga{
-	position:absolute;
-	/* background-image: url(../img/Fondo-pausa.png); */
-	margin: -189px;
-	display: none;
+.buttonsTools{
+	position: absolute;
+	top: 471px;
+	height: 109px;;
 }
 
 .buttons_tools1{
-	padding-top: 43px;
-	height: 115px;;
-}
-
-span{
 	position: absolute;
-	right: 40px;
-	top: 12px;
+	/* top: 0px; */
 }
 
-.btnPinzas{
-	padding-left:32px;
+.buttons_tools2{
+	position: absolute;
+	top: 45px;
+}
+.button_tool{
+	position: absolute;
+	background:none;
+	border: none;
+    height: 55px;
+    width: 74px;
+	display: inline;
+}
+#button1{
+    background-image:  url("../img/Boton-bistiru.png");
+	background-repeat: no-repeat;
+	left:32px;
+}
+#button2{
+	background-image:  url("../img/Boton-coser.png");
+	background-repeat: no-repeat;
+	left:143px;
+}
+#button3{
+	background-image:  url("../img/Boton-crema.png");
+	background-repeat: no-repeat;
+	left:254px;
+}
+#button4{
+	background-image:  url("../img/boton-encendedor.png");
+	background-repeat: no-repeat;
+	left:83px;
+}
+#button5{
+	background-image:  url("../img/Boton-pinzas.png");
+	background-repeat: no-repeat;
+	left:193px;
 }
 
-.btnEncendedor{
-	padding-left: 45px;
+.btnsHeridas{
+	margin: 5px;
+	background:none;
+	border:none;
 }
 
-.btnCoser{
-	padding-left: 45px;
+.heridasTortuga{
+    position: absolute;
+    left: 19px;
+    top: 77px;
+    width: 188px;
+    height: 186px;
+    border-radius: 63px 69px 79px 88px;
+
+}
+.heridasFoca{
+	position: absolute;
+    left: 51px;
+    top: 12px;
+    width: 71px;
+    height: 186px;
+    border-radius: 24px 22px 20px 47px;
+}
+.heridasBallena{
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    width: 159px;
+    height: 186px;
+    border-radius: 67px 72px 7px 140px;
 }
 
-.btnCrema{
-	padding-left: 90px;
-}
 
-.btnBisturi{
-	padding-left: 45px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

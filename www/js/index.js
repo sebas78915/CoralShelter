@@ -1,117 +1,217 @@
-//var cronometro;
-var intro, creditos, tortuga, foca, ballena, histTortuga, histFoca, histBallena;
+window.onload = inicio;
+
+var heridas = [];
+var botones = [];
+var btnHeridas = [];
+var randomAnima = [];
+var heridasCtd;
+var camilla;
+var puntaje = 0;
+var heridaCurar;
+var vistaPuntage;
+
+function inicio(){
+    inicializarVariables();
+    randomAnimales();
+    verAnimales(0);
+    asignarEventosHerramientas();
+    verPuntaje();
+}
 
 function desaparecer(){
     var pantalla = document.getElementById("pantalla_carga");
     pantalla.style.display = "none";
+    pantalla.className="ocultar bounceOut"
+    pantalla_introduccion.className="mostrar animated slideInUp";
 }
 setTimeout(desaparecer,3000);
 
 function inicializarVariables(){
     intro = document.getElementById("pantalla_introduccion");
     creditos = document.getElementById("creditos");
-    tortuga = document.getElementById("pantalla_tortuga");
+    juego = document.getElementById("pantalla_juego");
     foca = document.getElementById("pantalla_foca");
     ballena = document.getElementById("pantalla_ballena");
     histTortuga = document.getElementById("historia_tortuga");
     histFoca = document.getElementById("historia_foca");
     histBallena = document.getElementById("historia_ballena");
-}
+    s=document.getElementById("segundos");
+    camilla = document.getElementById("camilla");
+    heridasCtd = document.getElementById("heridasCtd");
+    vistaPuntage = document.getElementById("vistaPuntage");
 
-function btnCreditos(){
-    inicializarVariables();
-    intro.style.display = "none";
-    creditos.style.display = "block";
-    tortuga.style.display = "none";
-    foca.style.display = "none";
-    ballena.style.display = "none";
-    histTortuga.style.display = "none";
-    histFoca.style.display = "none";
-    histBallena.style.display = "none";
-}
+    heridas.push(new herida("p", "img/imgHeridas/basura2Ballena.png", "ballena"));
+    heridas.push(new herida("p", "img/imgHeridas/basuraBallena.png",  "ballena"));
+    heridas.push(new herida("p", "img/imgHeridas/basuraFoca.png", "foca"));
+    heridas.push(new herida("b", "img/imgHeridas/basuraTortuga.png", "tortuga"));
+    heridas.push(new herida("a", "img/imgHeridas/Cortada.png", "todos"));
+    heridas.push(new herida("c", "img/imgHeridas/herida1.png", "todos"));
+    heridas.push(new herida("e", "img/imgHeridas/Herida2.png", "todos"));
+    heridas.push(new herida("a", "img/imgHeridas/herida4.png", "todos"));
+    heridas.push(new herida("p", "img/imgHeridas/PaloTortuga.png", "tortuga"));
+    heridas.push(new herida("c", "img/imgHeridas/Quemadura2.png", "todos"));
+    heridas.push(new herida("p", "img/imgHeridas/VidrioTortuga.png", "tortuga"));
 
-function btnHome(){
-    inicializarVariables();
-    intro.style.display = "block";
-    creditos.style.display = "none";
-    tortuga.style.display = "none";
-    foca.style.display = "none";
-    ballena.style.display = "none";
-    histTortuga.style.display = "none";
-    histFoca.style.display = "none";
-    histBallena.style.display = "none";
-}
+    randomAnima.push(new animalHerido("tortuga","img/Tortuga.png","heridasTortuga"));
+    randomAnima.push(new animalHerido("ballena","img/Ballena.png","heridasBallena"));
+    randomAnima.push(new animalHerido("foca","img/Foca.png","heridasFoca"));
 
-function vector(){
-    var array = [];
-    inicializarVariables();
-    array[0]=tortuga.style.display;
-    array[1]=foca.style.display;
-    array[2]=ballena.style.display;
-
-    return array;
-}
-
-
-function btnPlay(){
-    var random;
-    var vector=[];
-    inicializarVariables();
-    intro.style.display = "none";
-    creditos.style.display = "none";
-    tortuga.style.display = "block";
-    foca.style.display = "none";
-    ballena.style.display = "none";
-    histTortuga.style.display = "none";
-    histFoca.style.display = "none";
-    histBallena.style.display = "none";
-    carga();
+    boton("button1","p");
+    boton("button2","e");
+    boton("button3","a");
+    boton("button4","c");
+    boton("button5","b");
 }
 
 function btnPausa(){
     inicializarVariables();
-    lightbox.className="mostrar";
-    btnCerrar.addEventListener("click",()=>{
+    s.innerHTML = 0;
+    lightbox.className="mostrar animated fadeIn";
+    play_pausa.addEventListener("click",()=>{
+        lightbox.className="ocultar animated fadeOut";
+    });
+    reinicio_pausa.addEventListener("click",()=>{
+        lightbox.className="ocultar animated fadeOut";
+        cont_s=0;
+    });
+
+    home_pausa.addEventListener("click", ()=>{
         lightbox.className="ocultar";
     });
 }
 
+function btnResume(){
+    
+}
+
 function carga(){
     inicializarVariables();
-    if (tortuga.style.display=="block") {
-        cont_s = 0;
-        s=document.getElementById("segundos");
-
+    if (juego.style.display=="block") {
+        cont_s = 2;
+        
         window.setInterval(function(){
-            s.innerHTML = cont_s;
+            s.innerHTML = cont_s-1;
+            tiempo = cont_s;
             cont_s++;
-            if (cont_s==30) {
-                
+            if (cont_s==5) {
+                // lightboxPerdiste.className="mostrar";
+                // ventanaPerdiste.className="mostrar animated rubberBand"
+                // inicio_perdiste.addEventListener("click",()=>{
+                //     lightboxPerdiste.className="ocultar";
+                // });
+                // reinicio_perdiste.addEventListener("click",()=>{
+                //     lightboxPerdiste.className="ocultar";
+                //     cont_s=0;
+                // });
             }
         },1000);
     }
-    if (foca.style.display=="block") {
-        cont_s = 0;
-        s=document.getElementById("segundos2");
-
-        window.setInterval(function(){
-            s.innerHTML = cont_s;
-            cont_s++;
-            if (cont_s==30) {
-                
-            }
-        },1000);
-    }
-    if (ballena.style.display=="block") {
-        cont_s = 0;
-        s=document.getElementById("segundos3");
-
-        window.setInterval(function(){
-            s.innerHTML = cont_s;
-            cont_s++;
-            if (cont_s==30) {
-                
-            }
-        },1000);
-    }   
 }
+
+function cambioSeccion(seccion) {
+    var i, tabContenido;
+    pantalla_introduccion.className="tab ocultar";
+	tabContenido = document.getElementsByClassName("tab");
+	for (i = 0; i < tabContenido.length; i++) {
+        tabContenido[i].style.display = "none";
+	}	
+    document.getElementById(seccion).style.display = "block";
+
+}
+
+// efkjdwkefbkbkvbakbkvkagjkrfjvkjdkjvrjkarvjkr v jkr fvjkrvjkrvjkWVKJVJKSVJK KJV KJ KJRV <S VK 
+
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
+  function randomAnimales(){
+      randomAnima = shuffle(randomAnima);
+  }
+  
+  function verAnimales(animal){
+     camilla.style.background = "url('"+randomAnima[animal].url+"') no-repeat";
+     heridasCtd.className = randomAnima[animal].contenedorHeridas;
+    verHeridas(animal);     
+  }
+  function verHeridas(animal){
+      heridas = shuffle(heridas);
+      var documentText = "";
+      var temp = [];
+      for (const key in heridas) {
+          if(randomAnima[animal].nombre == heridas[key].animal || "todos" == heridas[key].animal){
+              documentText += "<button class='btnsHeridas' id='"+heridas[key].urlImg+"'><img src='"+heridas[key].urlImg+"'></button>";
+              temp.push(heridas[key]);
+          }else{
+  
+          }
+      }
+      heridasCtd.innerHTML = documentText;
+      crearBotonesHeridas(temp);
+  }
+  
+  function crearBotonesHeridas(array){
+      for (const key in array) {
+          btnHeridas[key] = document.getElementById(array[key].urlImg);
+          btnHeridas[key].addEventListener("click",(valor = 1, herramienta =  array[key].herramienta, boton = btnHeridas[key]  )=>{
+                if(heridaCurar ==  herramienta){
+                    puntaje += 1000;
+
+                    boton.style.visibility = "hidden";
+                }else{
+                    puntaje -= 1000;
+                }
+            heridaCurar = "";
+            verPuntaje();
+            } 
+        );}
+  }
+  
+  function asignarEventosHerramientas(){
+      for (const key in botones) {
+          botones[key].addEventListener("click",elegirHerramienta);
+      }
+  }
+   
+   
+  function elegirHerramienta(event){
+      heridaCurar = event.target.herramienta;
+  }
+
+  function verPuntaje(){
+      vistaPuntage.innerHTML = "<span class='valores'>"+puntaje+"</span>";
+      
+  }
+  
+  function animalHerido(nombre,url,contenedorHeridas){
+      this.nombre = nombre;
+      this.url = url;
+      this.contenedorHeridas = contenedorHeridas;
+  }
+
+  function herida(herramienta, urlImg,animal){
+      this.herramienta = herramienta;
+      this.urlImg = urlImg;
+      this.animal = animal;
+  }
+
+  function boton(idBtn,herramienta){
+      var temp;
+      temp = document.getElementById(idBtn);
+      temp.herramienta = herramienta;
+      botones.push(temp);
+  } 

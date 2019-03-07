@@ -5,18 +5,17 @@
 	<meta charset="utf-8">
 	<script type="text/javascript" src="js/index.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
 </head>
-<body onload="carga()">
+<body>
 
 	<!-- Sección pantalla de carga -->
 
-	<section id="pantalla_carga">
-
-	</section>
+	<section id="pantalla_carga" class="animated zoomIn"></section>
 
 	<!-- Sección introductoria -->
 
-	<section id="pantalla_introduccion">
+	<section id="pantalla_introduccion" class="tab ocultar">
 		<img id="personaje" src="img/Personaje.png">
 		<div>
 			<p id="intro">
@@ -27,17 +26,17 @@
 				¡Únete a salvar la vida de estos animales!
 			</p>
 		</div>
-		<img id="btnCreditos" src="img/botoncreditos.png" onclick="btnCreditos();"/>
-		<!-- <input type="button" id="btnCreditos" class="button_tool_cred" onclick="alerta();"> -->
-		<img id="btnPlay" src="img/Botonplay.png" onclick="btnPlay();">
-		<!-- <input type="button" id="btnPlay" class="button_tool_play"><br><br><br><br><br> -->
+		<img id="btnCreditos" class="animated heartBeat" src="img/botoncreditos.png" onclick="cambioSeccion('creditos');"/>
+		<img id="btnAyuda" class="animated heartBeat" src="img/botonayuda.png" onclick="cambioSeccion('ayuda');">
+		<img id="btnPlay" class="animated heartBeat" src="img/Botonplay.png" onclick="cambioSeccion('pantalla_juego');carga();">
 		<label id="lblCreditos" class="lblBotones">Créditos</label>
+		<label id="lblAyuda" class="lblBotones">Ayuda</label>
 		<label id="lblJugar" class="lblBotones">Jugar</label>
 	</section>
 
 	<!-- Sección de los créditos -->
 
-	<section id="creditos">
+	<section id="creditos" class="tab">
 		<div id="diseñadora">
 			<h1>Diseñadora</h1>
 			<label>Manuela Giraldo Giraldo</label>
@@ -47,60 +46,103 @@
 			<label>Sebastián Loaiza Henao</label><br>
 			<label>Juan José Brand Londoño</label>
 		</div>
-		<img id="btnInicioCred" src="img/boton-inicio-creditos.png" onclick="btnHome();"><br>
+		<img id="btnInicioCred" class="animated heartBeat" src="img/boton-inicio-creditos.png" onclick="cambioSeccion('pantalla_introduccion')"><br>
 		<label id="lblInicioCred" class="lblBotones">Inicio</label>
 	</section>
 
-	<!-- Sección juego tortuga -->
+	<!-- Sección ayuda -->
 
-	<section id="pantalla_tortuga" class="juego">
-		<div class="menu">
-				<div id="lightbox" class="ocultar">
-					<div id="ventanaModal">
-						<p id="mensaje">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-						<input type="button" id="btnCerrar" value="Ok">
-					</div>
-				</div>
-			<img class="btnInicio" src="img/Boton-inicio-juego.png" onclick="btnHome();">
-			<div class="puntaje"></div>
-			<div class="tiempo">
-				<div>
-					<span id="segundos">0</span>
-				</div>
+	<section id="ayuda" class="tab">
+		<div id="tools">
+			<img id="pinzas" class="tamaños" src="img/pinzas.png">
+			<img id="encendedor" class="tamaños" src="img/encendedor.png">
+			<img id="crema" class="tamaños" src="img/crema.png">
+			<img id="bisturi" class="tamaños" src="img/bisturi.png">
+			<img id="coser" class="tamaños" src="img/hilo.png">
+		</div>
+		<img id="btnInicioAyuda" class="animated heartBeat" src="img/botoninicio-ayuda.png" onclick="cambioSeccion('pantalla_introduccion')"><br>
+		<label id="lblInicioAyuda" class="lblBotones">Inicio</label>
+	</section>
+
+	<!-- Sección juego -->
+
+	<section id="pantalla_juego" class="juego tab">
+		<div id="lightbox" class="ocultar">
+			<div id="ventanaModal">
+				<img id="play_pausa" class="animated heartBeat" src="img/boton-play-pausa.png">
+				<img id="reinicio_pausa" class="animated heartBeat" src="img/Boton-volverajugar-pausa.png">
+				<img id="home_pausa" class="animated heartBeat" src="img/Boton-salir-pausa.png" onclick="cambioSeccion('pantalla_introduccion')">
 			</div>
-			<img class="btnPausa" src="img/Boton-pausa.png" onclick="btnPausa();">
 		</div>
 
-		<div id="tortuga">
-			<!-- <img id="pausaTortuga" src="img/Fondo-pausa.png"> -->
+		<div id="lightboxPerdiste" class="ocultar">
+			<div id="ventanaPerdiste">
+				<img id="inicio_perdiste" src="img/Boton-inicio-perdiste.png" onclick="cambioSeccion('pantalla_introduccion')">
+				<img id="reinicio_perdiste" src="img/Boton-volverajugar-perdiste.png">
+			</div>
+		</div>
+
+		<!-- <div class="menu">	
+			<img class="btnInicio animated heartBeat" src="img/Boton-inicio-juego.png" onclick="cambioSeccion('pantalla_introduccion')">
+			<div class="puntaje"></div>
+			<div class="tiempo">
+				<span id="segundos">0</span>
+			</div>
+			<img class="btnPausa animated heartBeat" src="img/Boton-pausa.png" onclick="btnPausa();">
+		</div>
+
+		<div id="camilla" class="camilla">
+			<div id="heridasCtd"></div>
 		</div>
 
 		<div class="buttons_tools1">
-			<img class="btnPinzas" src="img/Boton-pinzas.png">
-			<img class="btnEncendedor" src="img/boton-encendedor.png">
-			<img class="btnCoser" src="img/Boton-coser.png">
-			<img class="btnCrema" src="img/Boton-crema.png">
-			<img class="btnBisturi" src="img/Boton-bistiru.png">
+			<img id="btnPinzas" class="animated heartBeat" src="img/Boton-pinzas.png">
+			<img id="btnEncendedor" class="animated heartBeat" src="img/boton-encendedor.png">
+			<img id="btnCoser" class="animated heartBeat" src="img/Boton-coser.png">
+			<img id="btnCrema" class="animated heartBeat" src="img/Boton-crema.png">
+			<img id="btnBisturi" class="animated heartBeat" src="img/Boton-bistiru.png">
+		</div> -->
+
+		<div class="menu">
+			<img class="btnInicio animated heartBeat" src="img/Boton-inicio-juego.png" onclick="cambioSeccion('pantalla_introduccion')">
+			<div class="indicadores puntaje" id="vistaPuntage"></div>
+			<div class="indicadores tiempo">
+				<span id="segundos" class="valores">0</span>
+			</div>
+			<img class="btnPausa animated heartBeat" src="img/Boton-pausa.png" onclick="btnPausa();">			
 		</div>
+
+		<div id="camilla" class="camilla">
+			<div id="heridasCtd" class="">
+			</div>
+		</div>
+
+		<div class="buttonsTools">
+			<div class="buttons_tools1">
+			<input type="button" class="button_tool" id="button1" name="">
+			<input type="button" class="button_tool" id="button2" name="">
+			<input type="button" class="button_tool" id="button3" name="">
+		</div>
+		<div class="buttons_tools2">
+			<input type="button" class="button_tool" id="button4" name="">
+			<input type="button" class="button_tool" id="button5" name="">
+		</div>
+		</div>
+	
 	</section>
 
 	<!-- Sección Juego foca -->
 
-	<section id="pantalla_foca" class="juego">
+	<!-- <section id="pantalla_foca" class="juego tab">
 		<div class="menu">
-			<img class="btnInicio" src="img/Boton-inicio-juego.png">
+			<img class="btnInicio" src="img/Boton-inicio-juego.png" onclick="cambioSeccion('pantalla_introduccion')">
 			<div class="puntaje"></div>
 			<div class="tiempo">
 				<div>
 					<span id="segundos2">0</span>
 				</div>
 			</div>
-			<img class="btnPausa" src="img/Boton-pausa.png">
+			<img class="btnPausa " src="img/Boton-pausa.png">
 		</div>
 
 		<div id="foca"></div>
@@ -112,11 +154,11 @@
 			<img class="btnCrema" src="img/Boton-crema.png">
 			<img class="btnBisturi" src="img/Boton-bistiru.png">
 		</div>
-	</section>
+	</section> -->
 
 	<!-- Sección juego ballena -->
 
-	<section id="pantalla_ballena" class="juego">
+	<!-- <section id="pantalla_ballena" class="juego tab">
 		<div class="menu">
 			<img class="btnInicio" src="img/Boton-inicio-juego.png">
 			<div class="puntaje"></div>
@@ -137,11 +179,11 @@
 			<img class="btnCrema" src="img/Boton-crema.png">
 			<img class="btnBisturi" src="img/Boton-bistiru.png">
 		</div>
-	</section>
+	</section> -->
 
 	<!-- Sección historia de la tortuga -->
 
-	<section id="historia_tortuga">
+	<section id="historia_tortuga" class="tab">
 		<div>
 			<img id="btnInicioHist" src="img/Boton-inicio-historias.png">
 			<img id="btnVolverHist" src="img/Boton-volvera-jugar-historias.png">
@@ -161,7 +203,7 @@
 
 	<!-- Sección historia de la foca -->
 
-	<section id="historia_foca">
+	<section id="historia_foca" class="tab">
 		<div>
 			<img id="btnInicioHist" src="img/Boton-inicio-historias.png">
 			<img id="btnVolverHist" src="img/Boton-volvera-jugar-historias.png">
@@ -181,7 +223,7 @@
 
 	<!-- Sección historia de la ballena -->
 	
-	<section id="historia_ballena">
+	<section id="historia_ballena" class="tab">
 		<div>
 			<img id="btnInicioHist" src="img/Boton-inicio-historias.png">
 			<img id="btnVolverHist" src="img/Boton-volvera-jugar-historias.png">
