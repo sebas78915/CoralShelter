@@ -9,11 +9,14 @@ var camilla;
 var puntaje = 0;
 var heridaCurar;
 var vistaPuntage;
+var lightboxPerdiste;
+var countHeridas = 0;
+var posicionAnimal = 0;
 
 function inicio(){
     inicializarVariables();
     randomAnimales();
-    verAnimales(0);
+    verAnimales(posicionAnimal);
     asignarEventosHerramientas();
     verPuntaje();
 }
@@ -39,6 +42,7 @@ function inicializarVariables(){
     camilla = document.getElementById("camilla");
     heridasCtd = document.getElementById("heridasCtd");
     vistaPuntage = document.getElementById("vistaPuntage");
+    lightboxPerdiste = document.getElementById("lightboxPerdiste");
 
     heridas.push(new herida("p", "img/imgHeridas/basura2Ballena.png", "ballena"));
     heridas.push(new herida("p", "img/imgHeridas/basuraBallena.png",  "ballena"));
@@ -64,7 +68,6 @@ function inicializarVariables(){
 }
 
 function btnPausa(){
-    inicializarVariables();
     s.innerHTML = 0;
     lightbox.className="mostrar animated fadeIn";
     play_pausa.addEventListener("click",()=>{
@@ -85,7 +88,6 @@ function btnResume(){
 }
 
 function carga(){
-    inicializarVariables();
     if (juego.style.display=="block") {
         cont_s = 2;
         
@@ -146,6 +148,7 @@ function shuffle(array) {
   function verAnimales(animal){
      camilla.style.background = "url('"+randomAnima[animal].url+"') no-repeat";
      heridasCtd.className = randomAnima[animal].contenedorHeridas;
+     heridasCtd.innerHTML = "";
     verHeridas(animal);     
   }
   function verHeridas(animal){
@@ -170,13 +173,23 @@ function shuffle(array) {
           btnHeridas[key].addEventListener("click",(valor = 1, herramienta =  array[key].herramienta, boton = btnHeridas[key]  )=>{
                 if(heridaCurar ==  herramienta){
                     puntaje += 1000;
-
                     boton.style.visibility = "hidden";
+                    countHeridas += 1;
                 }else{
-                    puntaje -= 1000;
+                   
+                    lightboxPerdiste.className = "mostrar";
+                    if(puntaje == 0){
+                      puntaje = 0;
+                    }else{
+                      puntaje -= 1000;
+                    }
+                        
+                    setTimeout(()=>{lightboxPerdiste.className = "ocultar";},500);
+
                 }
             heridaCurar = "";
             verPuntaje();
+            verHistoria(randomAnima[posicionAnimal].nombre)
             } 
         );}
   }
@@ -187,6 +200,24 @@ function shuffle(array) {
       }
   }
    
+
+   function verHistoria(animal){
+       if (btnHeridas.length == countHeridas) {
+          var temp = "";
+            if (animal == "tortuga") {
+              temp = "historia_tortuga"
+            }
+            if (animal == "foca") {
+              temp = "historia_foca"
+            }
+            if (animal == "ballena") {
+              temp = "historia_ballena"
+            }
+            setTimeout(cambioSeccion(temp),2000);
+        }else{
+
+        }
+   }
    
   function elegirHerramienta(event){
       heridaCurar = event.target.herramienta;
@@ -194,7 +225,7 @@ function shuffle(array) {
 
   function verPuntaje(){
       vistaPuntage.innerHTML = "<span class='valores'>"+puntaje+"</span>";
-      
+
   }
   
   function animalHerido(nombre,url,contenedorHeridas){
