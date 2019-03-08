@@ -9,6 +9,7 @@ var camilla;
 var puntaje = 0;
 var heridaCurar;
 var vistaPuntage;
+var vistaPuntajeWin;
 var lightboxPerdiste;
 var countHeridas = 0;
 var posicionAnimal = 0;
@@ -23,8 +24,8 @@ function inicio(){
 
 function desaparecer(){
     var pantalla = document.getElementById("pantalla_carga");
-    pantalla.style.display = "none";
-    pantalla.className="ocultar bounceOut"
+    // pantalla.style.display = "none";
+    pantalla.className="ocultar animated bounceOut"
     pantalla_introduccion.className="mostrar animated slideInUp";
 }
 setTimeout(desaparecer,3000);
@@ -42,6 +43,7 @@ function inicializarVariables(){
     camilla = document.getElementById("camilla");
     heridasCtd = document.getElementById("heridasCtd");
     vistaPuntage = document.getElementById("vistaPuntage");
+    vistaPuntajeWin = document.getElementById("vistaPuntaje");
     lightboxPerdiste = document.getElementById("lightboxPerdiste");
 
     heridas.push(new herida("p", "img/imgHeridas/basura2Ballena.png", "ballena"));
@@ -97,16 +99,16 @@ function carga(){
             s.innerHTML = cont_s;
             tiempo = cont_s;
             cont_s++;
-            if (cont_s==5) {
-                // lightboxPerdiste.className="mostrar";
-                // ventanaPerdiste.className="mostrar animated rubberBand"
-                // inicio_perdiste.addEventListener("click",()=>{
-                //     lightboxPerdiste.className="ocultar";
-                // });
-                // reinicio_perdiste.addEventListener("click",()=>{
-                //     lightboxPerdiste.className="ocultar";
-                //     cont_s=0;
-                // });
+            if (cont_s==32) {
+                lightboxPerdedor.className="mostrar";
+                ventanaPerdiste.className="mostrar animated rubberBand"
+                inicio_perdiste.addEventListener("click",()=>{
+                    lightboxPerdedor.className="ocultar";
+                });
+                reinicio_perdiste.addEventListener("click",()=>{
+                    lightboxPerdedor.className="ocultar";
+                    cont_s=0;
+                });
             }
         },1000);
     }
@@ -120,7 +122,7 @@ function cambioSeccion(seccion) {
         tabContenido[i].style.display = "none";
 	}	
     document.getElementById(seccion).style.display = "block";
-
+    carga();
 }
 
 // efkjdwkefbkbkvbakbkvkagjkrfjvkjdkjvrjkarvjkr v jkr fvjkrvjkrvjkWVKJVJKSVJK KJV KJ KJRV <S VK 
@@ -151,9 +153,10 @@ function shuffle(array) {
      camilla.style.background = "url('"+randomAnima[animal].url+"') no-repeat";
      heridasCtd.className = randomAnima[animal].contenedorHeridas;
      heridasCtd.innerHTML = "";
-    verHeridas(animal); 
-    countHeridas = 0;
+    verHeridas(animal);
+    countHeridas = 0;  
   }
+
   function verHeridas(animal){
       heridas = shuffle(heridas);
       var documentText = "";
@@ -193,7 +196,7 @@ function shuffle(array) {
                 }
             heridaCurar = "";
             verPuntaje();
-            verHistoria(randomAnima[posicionAnimal].nombre);
+            ganaste(randomAnima[posicionAnimal].nombre);
 
             } 
         );}
@@ -206,33 +209,43 @@ function shuffle(array) {
   }
    
 
-   function verHistoria(animal){
-        
+   function ganaste(animal){
        if (btnHeridas.length == countHeridas) {
-            
-          var temp = "";
-            if (animal == "tortuga") {
-              temp = "historia_tortuga";
-            }
-            if (animal == "foca") {
-              temp = "historia_foca";
-            }
-            if (animal == "ballena") {
-              temp = "historia_ballena";
-            }
-        }else{
-
+            lightboxGanaste.className = "mostrar";
+            ventanaGanaste.className="mostrar animated rubberBand"
+            reiniciarGanaste.addEventListener("click",()=>{
+                lightboxGanaste.className="ocultar animated fadeOut";
+                cont_s=0;
+                randomAnimales();
+                verAnimales(posicionAnimal);
+                asignarEventosHerramientas();
+            });
+            historiaGanaste.addEventListener("click",()=>{
+                lightboxGanaste.className = "ocultar";
+                var temp = "";
+                if (animal == "tortuga") {
+                temp = "historia_tortuga";
+                }
+                if (animal == "foca") {
+                temp = "historia_foca";
+                }
+                if (animal == "ballena") {
+                temp = "historia_ballena";
+                }
+                cambioSeccion(temp);
+            });
         }
    }
 
    function volverJuego(){
-        cambioSeccion('pantalla_juego');
-        if(posicionAnimal == 2){
-            posicionAnimal = -1;
-        }
-        verAnimales(posicionAnimal+=1);
-        puntaje = 0;
-   }
+    cambioSeccion('pantalla_juego');
+    if(posicionAnimal == 2){
+        posicionAnimal = -1;
+    }
+    
+    verAnimales(posicionAnimal+=1);
+    puntaje = 0;
+}
    
   function elegirHerramienta(event){
       heridaCurar = event.target.herramienta;
@@ -240,7 +253,7 @@ function shuffle(array) {
 
   function verPuntaje(){
       vistaPuntage.innerHTML = "<span class='valores'>"+puntaje+"</span>";
-
+      vistaPuntajeWin.innerHTML = "<span class='valores'>"+puntaje+"</span>";
   }
   
   function animalHerido(nombre,url,contenedorHeridas){
@@ -260,4 +273,4 @@ function shuffle(array) {
       temp = document.getElementById(idBtn);
       temp.herramienta = herramienta;
       botones.push(temp);
-  } 
+} 

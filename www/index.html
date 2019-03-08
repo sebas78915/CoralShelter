@@ -28,7 +28,7 @@
 		</div>
 		<img id="btnCreditos" class="animated heartBeat" src="img/botoncreditos.png" onclick="cambioSeccion('creditos');"/>
 		<img id="btnAyuda" class="animated heartBeat" src="img/botonayuda.png" onclick="cambioSeccion('ayuda');">
-		<img id="btnPlay" class="animated heartBeat" src="img/Botonplay.png" onclick="cambioSeccion('pantalla_juego');carga();">
+		<img id="btnPlay" class="animated heartBeat" src="img/Botonplay.png" onclick="cambioSeccion('pantalla_juego');">
 		<label id="lblCreditos" class="lblBotones">Créditos</label>
 		<label id="lblAyuda" class="lblBotones">Ayuda</label>
 		<label id="lblJugar" class="lblBotones">Jugar</label>
@@ -78,7 +78,7 @@
 				<img id="error" class="animated heartBeat" class="" src="img/X-error.png">
 		</div>
 
-		<div id="lightboxPerdiste" class="ocultar">
+		<div id="lightboxPerdedor" class="ocultar">
 			<div id="ventanaPerdiste">
 				<img id="inicio_perdiste" src="img/Boton-inicio-perdiste.png" onclick="cambioSeccion('pantalla_introduccion')">
 				<img id="reinicio_perdiste" src="img/Boton-volverajugar-perdiste.png">
@@ -99,10 +99,6 @@
 			</div>
 		</div>
 
-		<!-- <div id="ganaste">
-			<img src="im" alt="">
-		</div> -->
-
 		<div class="buttonsTools">
 			<div class="buttons_tools1">
 			<input type="button" class="button_tool" id="button1" name="">
@@ -117,55 +113,19 @@
 	
 	</section>
 
-	<!-- Sección Juego foca -->
+	<!-- Sección ganaste -->
 
-	<!-- <section id="pantalla_foca" class="juego tab">
-		<div class="menu">
-			<img class="btnInicio" src="img/Boton-inicio-juego.png" onclick="cambioSeccion('pantalla_introduccion')">
-			<div class="puntaje"></div>
-			<div class="tiempo">
-				<div>
-					<span id="segundos2">0</span>
-				</div>
+	<section id="ganaste">
+		<div id="lightboxGanaste" class="ocultar">
+			<div id="ventanaGanaste">
+				<div class="indicadores puntaje" id="vistaPuntaje"></div>
+				<img id="inicioGanaste" src="img/Boton-inicio-ganaste.png">
+				<img id="reiniciarGanaste" src="img/Boton-volverajugar-ganaste.png">
+				<img id="historiaGanaste" src="img/Boton-siguiente-pantalla.png">
 			</div>
-			<img class="btnPausa " src="img/Boton-pausa.png">
 		</div>
-
-		<div id="foca"></div>
-
-		<div class="buttons_tools1">
-			<img class="btnPinzas" src="img/Boton-pinzas.png">
-			<img class="btnEncendedor" src="img/boton-encendedor.png">
-			<img class="btnCoser" src="img/Boton-coser.png">
-			<img class="btnCrema" src="img/Boton-crema.png">
-			<img class="btnBisturi" src="img/Boton-bistiru.png">
-		</div>
-	</section> -->
-
-	<!-- Sección juego ballena -->
-
-	<!-- <section id="pantalla_ballena" class="juego tab">
-		<div class="menu">
-			<img class="btnInicio" src="img/Boton-inicio-juego.png">
-			<div class="puntaje"></div>
-			<div class="tiempo">
-				<div>
-					<span id="segundos3">0</span>
-				</div>
-			</div>
-			<img class="btnPausa" src="img/Boton-pausa.png">
-		</div>
-
-		<div id="ballena"></div>
-
-		<div class="buttons_tools1">
-			<img class="btnPinzas" src="img/Boton-pinzas.png">
-			<img class="btnEncendedor" src="img/boton-encendedor.png">
-			<img class="btnCoser" src="img/Boton-coser.png">
-			<img class="btnCrema" src="img/Boton-crema.png">
-			<img class="btnBisturi" src="img/Boton-bistiru.png">
-		</div>
-	</section> -->
+		
+	</section>
 
 	<!-- Sección historia de la tortuga -->
 
