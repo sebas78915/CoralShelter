@@ -69,8 +69,8 @@
 	<section id="pantalla_juego" class="juego tab">
 		<div id="lightbox" class="ocultar">
 			<div id="ventanaModal">
-				<img id="play_pausa" class="animated heartBeat" src="img/boton-play-pausa.png">
-				<img id="reinicio_pausa" class="animated heartBeat" src="img/Boton-volverajugar-pausa.png">
+				<img id="play_pausa" class="animated heartBeat" src="img/boton-play-pausa.png" onclick="btnResume();">
+				<img id="reinicio_pausa" class="animated heartBeat" src="img/Boton-volverajugar-pausa.png" onclick="btnRestartTiempo();">
 				<img id="home_pausa" class="animated heartBeat" src="img/Boton-salir-pausa.png" onclick="cambioSeccion('pantalla_introduccion')">
 			</div>
 		</div>
@@ -89,7 +89,7 @@
 			<img class="btnInicio animated heartBeat" src="img/Boton-inicio-juego.png" onclick="cambioSeccion('pantalla_introduccion')">
 			<div class="indicadores puntaje" id="vistaPuntage"></div>
 			<div class="indicadores tiempo">
-				<span id="segundos" class="valores">0</span>
+				<span id="vistaSegundos" class="valores">0</span>
 			</div>
 			<img class="btnPausa animated heartBeat" src="img/Boton-pausa.png" onclick="btnPausa();">			
 		</div>

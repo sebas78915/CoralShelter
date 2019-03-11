@@ -13,6 +13,10 @@ var vistaPuntajeWin;
 var lightboxPerdiste;
 var countHeridas = 0;
 var posicionAnimal = 0;
+var tiempoSegundos = 0;
+var contadorCronometro = 0;
+var control;
+var vistaSegundos;
 
 function inicio(){
     inicializarVariables();
@@ -39,13 +43,12 @@ function inicializarVariables(){
     histTortuga = document.getElementById("historia_tortuga");
     histFoca = document.getElementById("historia_foca");
     histBallena = document.getElementById("historia_ballena");
-    s=document.getElementById("segundos");
+    vistaSegundos=document.getElementById("vistaSegundos");
     camilla = document.getElementById("camilla");
     heridasCtd = document.getElementById("heridasCtd");
     vistaPuntage = document.getElementById("vistaPuntage");
     vistaPuntajeWin = document.getElementById("vistaPuntaje");
     lightboxPerdiste = document.getElementById("lightboxPerdiste");
-
     heridas.push(new herida("p", "img/imgHeridas/basura2Ballena.png", "ballena"));
     heridas.push(new herida("p", "img/imgHeridas/basuraBallena.png",  "ballena"));
     heridas.push(new herida("p", "img/imgHeridas/basuraFoca.png", "foca"));
@@ -57,11 +60,9 @@ function inicializarVariables(){
     heridas.push(new herida("p", "img/imgHeridas/PaloTortuga.png", "tortuga"));
     heridas.push(new herida("c", "img/imgHeridas/Quemadura2.png", "todos"));
     heridas.push(new herida("p", "img/imgHeridas/VidrioTortuga.png", "tortuga"));
-
     randomAnima.push(new animalHerido("tortuga","img/Tortuga.png","heridasTortuga"));
     randomAnima.push(new animalHerido("ballena","img/Ballena.png","heridasBallena"));
     randomAnima.push(new animalHerido("foca","img/Foca.png","heridasFoca"));
-
     boton("button1","p");
     boton("button2","e");
     boton("button3","a");
@@ -69,49 +70,56 @@ function inicializarVariables(){
     boton("button5","b");
 }
 
-function btnPausa(){
-    lightbox.className="mostrar animated fadeIn";
-    play_pausa.addEventListener("click",()=>{
-        lightbox.className="ocultar animated fadeOut";
-    });
-    reinicio_pausa.addEventListener("click",()=>{
-        lightbox.className="ocultar animated fadeOut";
-        cont_s=0;
-        randomAnimales();
-        verAnimales(posicionAnimal);
-        asignarEventosHerramientas();
-    });
-
-    home_pausa.addEventListener("click", ()=>{
-        lightbox.className="ocultar";
-    });
-}
-
-function btnResume(){
-    
-}
-
+//funcion inicio de cronometro, se mueve cada centesegundo 
 function carga(){
-    if (juego.style.display=="block") {
-        cont_s = 2;
-        
-        window.setInterval(function(){
-            s.innerHTML = cont_s;
-            tiempo = cont_s;
-            cont_s++;
-            if (cont_s==32) {
-                lightboxPerdedor.className="mostrar";
-                ventanaPerdiste.className="mostrar animated rubberBand"
-                inicio_perdiste.addEventListener("click",()=>{
-                    lightboxPerdedor.className="ocultar";
-                });
-                reinicio_perdiste.addEventListener("click",()=>{
-                    lightboxPerdedor.className="ocultar";
-                    cont_s=0;
-                });
-            }
-        },1000);
+  control = setInterval(cronometro,100);
+}
+
+//esta funcion detiene el cronometro en el tiempo actual
+function btnPausa(){
+    clearInterval(control);
+    lightbox.className="mostrar animated fadeIn";
+}
+
+//esta funcion reinicia el tiempo en el cual fue pausado
+function btnResume(){
+    carga();
+    lightbox.className="ocultar animated fadeOut";
+}
+
+//esta funcion lleva el tiempo en segundos a "0" e inicia el contador
+function btnRestartTiempo(){
+    clearInterval(control);
+    vistaSegundos.innerHTML = 0;
+    tiempoSegundos = 0;
+    randomAnimales();
+    verAnimales(posicionAnimal);
+    carga();
+    lightbox.className="ocultar animated fadeOut";
+}
+
+//esta funcion es la encargada de medir el tiempo y realiza algunas tareas en un tirmpo determinado:
+//envia al span el tiempo actual 
+//sirve para determinar si el tiempo de juego se termina
+//incrementa el tiemposegundos en 1 cada que transcurre un segundo de tiempo fisico
+function cronometro(){
+   vistaSegundos.innerHTML = tiempoSegundos;
+    if (tiempoSegundos==30) {
+      clearInterval(control);
+      lightboxPerdedor.className="mostrar";
+      ventanaPerdiste.className="mostrar animated rubberBand"
+      inicio_perdiste.addEventListener("click",()=>{
+            lightboxPerdedor.className="ocultar";
+          });
+      reinicio_perdiste.addEventListener("click",()=>{
+            lightboxPerdedor.className="ocultar";
+            btnRestartTiempo();
+          });
     }
+    if (contadorCronometro%10==0) {
+        tiempoSegundos += 1;
+    }
+    contadorCronometro += 1;
 }
 
 function cambioSeccion(seccion) {
@@ -125,8 +133,8 @@ function cambioSeccion(seccion) {
     carga();
 }
 
-// efkjdwkefbkbkvbakbkvkagjkrfjvkjdkjvrjkarvjkr v jkr fvjkrvjkrvjkWVKJVJKSVJK KJV KJ KJRV <S VK 
-
+//
+//esta funcion es sacada de https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array/25984542
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
   
@@ -145,132 +153,146 @@ function shuffle(array) {
   
     return array;
   }
-  function randomAnimales(){
-      randomAnima = shuffle(randomAnima);
-  }
-  
-  function verAnimales(animal){
-     camilla.style.background = "url('"+randomAnima[animal].url+"') no-repeat";
-     heridasCtd.className = randomAnima[animal].contenedorHeridas;
-     heridasCtd.innerHTML = "";
-    verHeridas(animal);
-    countHeridas = 0;  
-  }
 
-  function verHeridas(animal){
-      heridas = shuffle(heridas);
-      var documentText = "";
-      var temp = [];
-      for (const key in heridas) {
-          if(randomAnima[animal].nombre == heridas[key].animal || "todos" == heridas[key].animal){
-              documentText += "<button class='btnsHeridas' id='"+heridas[key].urlImg+"'><img src='"+heridas[key].urlImg+"'></button>";
-              temp.push(heridas[key]);
-          }else{
-  
-          }
-      }
-      heridasCtd.innerHTML = documentText;
-      crearBotonesHeridas(temp);
-  }
-  
-  function crearBotonesHeridas(array){
-    btnHeridas = [];
-      for (const key in array) {
-          btnHeridas[key] = document.getElementById(array[key].urlImg);
-          btnHeridas[key].addEventListener("click",(valor = 1, herramienta =  array[key].herramienta, boton = btnHeridas[key]  )=>{
-                if(heridaCurar ==  herramienta){
-                    puntaje += 1000;
-                    boton.style.visibility = "hidden";
-                    countHeridas += 1;
-                }else{
-                   
-                    lightboxPerdiste.className = "mostrar";
-                    if(puntaje == 0){
-                      puntaje = 0;
-                    }else{
-                      puntaje -= 1000;
-                    }
-                        
-                    setTimeout(()=>{lightboxPerdiste.className = "ocultar";},500);
-
-                }
-            heridaCurar = "";
-            verPuntaje();
-            ganaste(randomAnima[posicionAnimal].nombre);
-
-            } 
-        );}
-  }
-  
-  function asignarEventosHerramientas(){
-      for (const key in botones) {
-          botones[key].addEventListener("click",elegirHerramienta);
-      }
-  }
-   
-
-   function ganaste(animal){
-       if (btnHeridas.length == countHeridas) {
-            lightboxGanaste.className = "mostrar";
-            ventanaGanaste.className="mostrar animated rubberBand"
-            reiniciarGanaste.addEventListener("click",()=>{
-                lightboxGanaste.className="ocultar animated fadeOut";
-                cont_s=0;
-                randomAnimales();
-                verAnimales(posicionAnimal);
-                asignarEventosHerramientas();
-            });
-            historiaGanaste.addEventListener("click",()=>{
-                lightboxGanaste.className = "ocultar";
-                var temp = "";
-                if (animal == "tortuga") {
-                temp = "historia_tortuga";
-                }
-                if (animal == "foca") {
-                temp = "historia_foca";
-                }
-                if (animal == "ballena") {
-                temp = "historia_ballena";
-                }
-                cambioSeccion(temp);
-            });
-        }
-   }
-
-   function volverJuego(){
-    cambioSeccion('pantalla_juego');
-    if(posicionAnimal == 2){
-        posicionAnimal = -1;
-    }
-    
-    verAnimales(posicionAnimal+=1);
-    puntaje = 0;
+//esta funcion cambia la posicion de los animales en el array randomAnima
+function randomAnimales(){
+    randomAnima = shuffle(randomAnima);
 }
-   
-  function elegirHerramienta(event){
-      heridaCurar = event.target.herramienta;
-  }
 
-  function verPuntaje(){
-      vistaPuntage.innerHTML = "<span class='valores'>"+puntaje+"</span>";
-      vistaPuntajeWin.innerHTML = "<span class='valores'>"+puntaje+"</span>";
+//esta funcion toma el animal en la posicion del array "animal" y lo imprime en el html
+function verAnimales(animal){
+   camilla.style.background = "url('"+randomAnima[animal].url+"') no-repeat";
+   heridasCtd.className = randomAnima[animal].contenedorHeridas;
+   heridasCtd.innerHTML = "";
+  verHeridas(animal);
+  countHeridas = 0;  
+}
+
+//esta funcion toma las heridas que le pertenecen a cada a nimal y pone sobre este
+//verAnimal y verHeridas comparten la var "animal" debe ser entero e igual
+function verHeridas(animal){
+    heridas = shuffle(heridas);
+    var documentText = "";
+    var temp = [];
+    for (const key in heridas) {
+        if(randomAnima[animal].nombre == heridas[key].animal || "todos" == heridas[key].animal){
+            documentText += "<button class='btnsHeridas' id='"+heridas[key].urlImg+"'><img src='"+heridas[key].urlImg+"'></button>";
+            temp.push(heridas[key]);
+        }else{
+
+        }
+    }
+    heridasCtd.innerHTML = documentText;
+    crearBotonesHeridas(temp);
+}
+
+//esta funcion toma las heridas de cada animal y las convierte en un boton
+function crearBotonesHeridas(array){
+  btnHeridas = [];
+    for (const key in array) {
+        btnHeridas[key] = document.getElementById(array[key].urlImg);
+        btnHeridas[key].addEventListener("click",(valor = 1, herramienta =  array[key].herramienta, boton = btnHeridas[key]  )=>{
+              if(heridaCurar ==  herramienta){
+                  puntaje += 1000;
+                  boton.style.visibility = "hidden";
+                  countHeridas += 1;
+              }else{
+                 
+                  lightboxPerdiste.className = "mostrar";
+                  if(puntaje == 0){
+                    puntaje = 0;
+                  }else{
+                    puntaje -= 1000;
+                  }
+                      
+                  setTimeout(()=>{lightboxPerdiste.className = "ocultar";},500);
+
+              }
+          heridaCurar = "";
+          verPuntaje();
+          ganaste(randomAnima[posicionAnimal].nombre);
+
+          } 
+      );}
+}
+
+//los botones de heridas, se les asigna un evento en esta funcion,
+function asignarEventosHerramientas(){
+    for (const key in botones) {
+        botones[key].addEventListener("click",elegirHerramienta);
+    }
+}
+ 
+
+ function ganaste(animal){
+     if (btnHeridas.length == countHeridas) {
+          clearInterval(control);
+          lightboxGanaste.className = "mostrar";
+          ventanaGanaste.className="mostrar animated rubberBand"
+          reiniciarGanaste.addEventListener("click",()=>{
+              lightboxGanaste.className="ocultar animated fadeOut";
+              cont_s=0;
+              randomAnimales();
+              verAnimales(posicionAnimal);
+              asignarEventosHerramientas();
+          });
+          historiaGanaste.addEventListener("click",()=>{
+              lightboxGanaste.className = "ocultar";
+              var temp = "";
+              if (animal == "tortuga") {
+              temp = "historia_tortuga";
+              }
+              if (animal == "foca") {
+              temp = "historia_foca";
+              }
+              if (animal == "ballena") {
+              temp = "historia_ballena";
+              }
+              cambioSeccion(temp);
+          });
+      }
+ }
+
+ function volverJuego(){
+  cambioSeccion('pantalla_juego');
+  if(posicionAnimal == 2){
+      posicionAnimal = -1;
   }
   
-  function animalHerido(nombre,url,contenedorHeridas){
-      this.nombre = nombre;
-      this.url = url;
-      this.contenedorHeridas = contenedorHeridas;
-  }
+  verAnimales(posicionAnimal+=1);
+  puntaje = 0;
+}
+ 
+//esta funcion permite al jugador selecionar una herramienta
+function elegirHerramienta(event){
+    heridaCurar = event.target.herramienta;
+}
 
-  function herida(herramienta, urlImg,animal){
-      this.herramienta = herramienta;
-      this.urlImg = urlImg;
-      this.animal = animal;
-  }
+function verPuntaje(){
+    vistaPuntage.innerHTML = "<span class='valores'>"+puntaje+"</span>";
+    vistaPuntajeWin.innerHTML = "<span class='valores'>"+puntaje+"</span>";
+}
 
-  function boton(idBtn,herramienta){
-      var temp;
-      temp = document.getElementById(idBtn);
-      temp.herramienta = herramienta;
-      botones.push(temp);
+
+
+
+
+//_____________________objetos______________________________
+function animalHerido(nombre,url,contenedorHeridas){
+    this.nombre = nombre;
+    this.url = url;
+    this.contenedorHeridas = contenedorHeridas;
+}
+
+function herida(herramienta, urlImg,animal){
+    this.herramienta = herramienta;
+    this.urlImg = urlImg;
+    this.animal = animal;
+}
+
+function boton(idBtn,herramienta){
+    var temp;
+    temp = document.getElementById(idBtn);
+    temp.herramienta = herramienta;
+    botones.push(temp);
 } 
