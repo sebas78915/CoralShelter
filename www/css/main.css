@@ -45,6 +45,12 @@ body{
 	display: none;
 }
 
+#ayuda2{
+	background-image: url(../img/fondo-ayuda.png);
+	height: 580px;
+	display: none;
+}
+
 #tools{
 	padding-top: 105px;
 	padding-left: 32px;
@@ -55,7 +61,8 @@ body{
 }
 
 #btnInicioAyuda{
-	padding-left: 145px;
+	padding-left: 140px;
+	position: absolute;
 }
 
 .tamaños{
@@ -132,6 +139,7 @@ body{
 #lblInicioAyuda{
 	padding-left: 168px;
 	display: block;
+	padding-top: 60px;
 }
 
 #diseñadora{
@@ -263,6 +271,11 @@ span{
 	z-index: 2;
 }
 
+#tiempo{
+	padding-left: 13px;
+	padding-top: 14px;
+}
+
 #error{
 	display:block;
 	margin:auto;
@@ -390,7 +403,7 @@ span{
 
 .valores{
 	position: absolute;
-	left: 20px;
+	left: 34px;
     top: 12px;
 }
 
@@ -487,21 +500,3 @@ span{
     border-radius: 67px 72px 7px 140px;
     padding: 5px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

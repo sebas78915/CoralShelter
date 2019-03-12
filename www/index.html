@@ -64,6 +64,20 @@
 		<label id="lblInicioAyuda" class="lblBotones">Inicio</label>
 	</section>
 
+	<!-- Sección ayuda 2 -->
+
+	<section id="ayuda2" class="tab">
+			<div id="tools">
+				<img id="pinzas" class="tamaños" src="img/pinzas.png">
+				<img id="encendedor" class="tamaños" src="img/encendedor.png">
+				<img id="crema" class="tamaños" src="img/crema.png">
+				<img id="bisturi" class="tamaños" src="img/bisturi.png">
+				<img id="coser" class="tamaños" src="img/hilo.png">
+			</div>
+			<img id="btnInicioAyuda" class="animated heartBeat" src="img/Botonplay.png" onclick="cambioSeccion('pantalla_juego')"><br>
+			<label id="lblInicioAyuda" class="lblBotones">Jugar</label>
+		</section>
+
 	<!-- Sección juego -->
 
 	<section id="pantalla_juego" class="juego tab">
@@ -80,8 +94,8 @@
 
 		<div id="lightboxPerdedor" class="ocultar">
 			<div id="ventanaPerdiste">
-				<img id="inicio_perdiste" src="img/Boton-inicio-perdiste.png" onclick="cambioSeccion('pantalla_introduccion')">
-				<img id="reinicio_perdiste" src="img/Boton-volverajugar-perdiste.png">
+				<img id="inicio_perdiste" class="animated heartBeat" src="img/Boton-inicio-perdiste.png" onclick="cambioSeccion('pantalla_introduccion')">
+				<img id="reinicio_perdiste" class="animated heartBeat" src="img/Boton-volverajugar-perdiste.png">
 			</div>
 		</div>
 
@@ -89,6 +103,7 @@
 			<img class="btnInicio animated heartBeat" src="img/Boton-inicio-juego.png" onclick="cambioSeccion('pantalla_introduccion')">
 			<div class="indicadores puntaje" id="vistaPuntage"></div>
 			<div class="indicadores tiempo">
+				<img id="tiempo" src="img/tiempo.png">
 				<span id="vistaSegundos" class="valores">0</span>
 			</div>
 			<img class="btnPausa animated heartBeat" src="img/Boton-pausa.png" onclick="btnPausa();">			
@@ -101,13 +116,13 @@
 
 		<div class="buttonsTools">
 			<div class="buttons_tools1">
-			<input type="button" class="button_tool" id="button1" name="">
-			<input type="button" class="button_tool" id="button2" name="">
-			<input type="button" class="button_tool" id="button3" name="">
+			<input type="button" class="button_tool animated heartBeat" id="button1" name="">
+			<input type="button" class="button_tool animated heartBeat" id="button2" name="">
+			<input type="button" class="button_tool animated heartBeat" id="button3" name="">
 		</div>
 		<div class="buttons_tools2">
-			<input type="button" class="button_tool" id="button4" name="">
-			<input type="button" class="button_tool" id="button5" name="">
+			<input type="button" class="button_tool animated heartBeat" id="button4" name="">
+			<input type="button" class="button_tool animated heartBeat" id="button5" name="">
 		</div>
 		</div>
 	
@@ -119,9 +134,9 @@
 		<div id="lightboxGanaste" class="ocultar">
 			<div id="ventanaGanaste">
 				<div class="indicadores puntaje" id="vistaPuntaje"></div>
-				<img id="inicioGanaste" src="img/Boton-inicio-ganaste.png">
-				<img id="reiniciarGanaste" src="img/Boton-volverajugar-ganaste.png">
-				<img id="historiaGanaste" src="img/Boton-siguiente-pantalla.png">
+				<img id="inicioGanaste" class="animated heartBeat" src="img/Boton-inicio-ganaste.png" onclick="cambioSeccion('pantalla_introduccion');ocultarGanaste();">
+				<img id="reiniciarGanaste" class="animated heartBeat" src="img/Boton-volverajugar-ganaste.png" onclick="volverJuego();">
+				<img id="historiaGanaste" class="animated heartBeat" src="img/Boton-siguiente-pantalla.png">
 			</div>
 		</div>
 		
@@ -131,8 +146,8 @@
 
 	<section id="historia_tortuga" class="tab">
 		<div>
-			<img id="btnInicioHist" src="img/Boton-inicio-historias.png">
-			<img id="btnVolverHist" src="img/Boton-volvera-jugar-historias.png" onclick="volverJuego();">
+			<img id="btnInicioHist" class="animated heartBeat" src="img/Boton-inicio-historias.png" onclick="cambioSeccion('pantalla_introduccion');">
+			<img id="btnVolverHist" class="animated heartBeat" src="img/Boton-volvera-jugar-historias.png" onclick="volverJuego();">
 		</div>
 		<p class="txtHistorias1">
 			Hola soy Flopy! Gracias por haber salvado mi 
@@ -151,8 +166,8 @@
 
 	<section id="historia_foca" class="tab">
 		<div>
-			<img id="btnInicioHist" src="img/Boton-inicio-historias.png">
-			<img id="btnVolverHist" src="img/Boton-volvera-jugar-historias.png" onclick="volverJuego();">
+			<img id="btnInicioHist" class="animated heartBeat" src="img/Boton-inicio-historias.png" onclick="cambioSeccion('pantalla_introduccion');">
+			<img id="btnVolverHist" class="animated heartBeat" src="img/Boton-volvera-jugar-historias.png" onclick="volverJuego();">
 		</div>
 		<p class="txtHistorias1">
 			Hola soy Kai! Gracias por haber salvado mi 
@@ -171,7 +186,7 @@
 	
 	<section id="historia_ballena" class="tab">
 		<div>
-			<img id="btnInicioHist" src="img/Boton-inicio-historias.png">
+			<img id="btnInicioHist" class="animated heartBeat" src="img/Boton-inicio-historias.png" onclick="cambioSeccion('pantalla_introduccion');">
 			<img id="btnVolverHist" src="img/Boton-volvera-jugar-historias.png" onclick="volverJuego();">
 		</div>
 		<p class="txtHistorias1">

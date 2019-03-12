@@ -78,7 +78,7 @@ function carga(){
 //esta funcion detiene el cronometro en el tiempo actual
 function btnPausa(){
     clearInterval(control);
-    lightbox.className="mostrar animated fadeIn";
+    lightbox.className="mostrar";
 }
 
 //esta funcion reinicia el tiempo en el cual fue pausado
@@ -98,7 +98,7 @@ function btnRestartTiempo(){
     lightbox.className="ocultar animated fadeOut";
 }
 
-//esta funcion es la encargada de medir el tiempo y realiza algunas tareas en un tirmpo determinado:
+//esta funcion es la encargada de medir el tiempo y realiza algunas tareas en un tiempo determinado:
 //envia al span el tiempo actual 
 //sirve para determinar si el tiempo de juego se termina
 //incrementa el tiemposegundos en 1 cada que transcurre un segundo de tiempo fisico
@@ -261,6 +261,8 @@ function asignarEventosHerramientas(){
   
   verAnimales(posicionAnimal+=1);
   puntaje = 0;
+  vistaPuntage.innerHTML = "<span class='valores'>"+0+"</span>";
+  tiempoSegundos=0;
 }
  
 //esta funcion permite al jugador selecionar una herramienta
@@ -273,9 +275,9 @@ function verPuntaje(){
     vistaPuntajeWin.innerHTML = "<span class='valores'>"+puntaje+"</span>";
 }
 
-
-
-
+function ocultarGanaste(){
+    lightboxGanaste.style.display = "none";
+}
 
 //_____________________objetos______________________________
 function animalHerido(nombre,url,contenedorHeridas){
