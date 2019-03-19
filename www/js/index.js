@@ -130,7 +130,10 @@ function cambioSeccion(seccion) {
         tabContenido[i].style.display = "none";
 	}	
     document.getElementById(seccion).style.display = "block";
-    carga();
+    if (seccion == "pantalla_juego"){
+       btnRestartTiempo();
+    }
+    
 }
 
 //
