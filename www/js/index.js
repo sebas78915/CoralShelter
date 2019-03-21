@@ -131,11 +131,21 @@ function cronometro(){
 
 function cambioSeccion(seccion) {
     var i, tabContenido;
-    if(contador==0){
-        if(seccion=="pantalla_juego"){
+    if(seccion=="pantalla_juego"){
+        if(contador==0){
             pantalla_introduccion.style.display = "none";
             ayuda2.style.display = "block";
             contador++;
+        }else{
+            pantalla_introduccion.className="tab ocultar";
+            tabContenido = document.getElementsByClassName("tab");
+            for (i = 0; i < tabContenido.length; i++) {
+                tabContenido[i].style.display = "none";
+            }
+            document.getElementById(seccion).style.display = "block";
+            if (seccion == "pantalla_juego"){
+                btnRestartTiempo();
+            }
         }
     }else{
         pantalla_introduccion.className="tab ocultar";
