@@ -65,6 +65,17 @@ body{
 	position: absolute;
 }
 
+#btnPlayAyuda{
+	padding-left: 140px;
+	position: absolute;
+}
+
+#lblPlayAyuda{
+	padding-left: 168px;
+	display: block;
+	padding-top: 60px;
+}
+
 .tamaños{
 	width: 150px;
 }

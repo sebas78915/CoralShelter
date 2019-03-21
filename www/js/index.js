@@ -17,6 +17,7 @@ var tiempoSegundos = 0;
 var contadorCronometro = 0;
 var control;
 var vistaSegundos;
+var contador = 0;
 
 function inicio(){
     inicializarVariables();
@@ -92,6 +93,8 @@ function btnRestartTiempo(){
     clearInterval(control);
     vistaSegundos.innerHTML = 0;
     tiempoSegundos = 0;
+    puntaje=0;
+    vistaPuntage.innerHTML = "<span class='valores'>"+0+"</span>";
     randomAnimales();
     verAnimales(posicionAnimal);
     carga();
@@ -110,10 +113,14 @@ function cronometro(){
       ventanaPerdiste.className="mostrar animated rubberBand"
       inicio_perdiste.addEventListener("click",()=>{
             lightboxPerdedor.className="ocultar";
+            puntaje=0;
+            vistaPuntage.innerHTML = "<span class='valores'>"+0+"</span>";
           });
       reinicio_perdiste.addEventListener("click",()=>{
             lightboxPerdedor.className="ocultar";
             btnRestartTiempo();
+            puntaje=0;
+            vistaPuntage.innerHTML = "<span class='valores'>"+0+"</span>";
           });
     }
     if (contadorCronometro%10==0) {
@@ -124,14 +131,22 @@ function cronometro(){
 
 function cambioSeccion(seccion) {
     var i, tabContenido;
-    pantalla_introduccion.className="tab ocultar";
-	tabContenido = document.getElementsByClassName("tab");
-	for (i = 0; i < tabContenido.length; i++) {
-        tabContenido[i].style.display = "none";
-	}	
-    document.getElementById(seccion).style.display = "block";
-    if (seccion == "pantalla_juego"){
-       btnRestartTiempo();
+    if(contador==0){
+        if(seccion=="pantalla_juego"){
+            pantalla_introduccion.style.display = "none";
+            ayuda2.style.display = "block";
+            contador++;
+        }
+    }else{
+        pantalla_introduccion.className="tab ocultar";
+        tabContenido = document.getElementsByClassName("tab");
+        for (i = 0; i < tabContenido.length; i++) {
+            tabContenido[i].style.display = "none";
+        }
+        document.getElementById(seccion).style.display = "block";
+        if (seccion == "pantalla_juego"){
+            btnRestartTiempo();
+        }
     }
     
 }
