@@ -304,7 +304,9 @@ function verPuntaje(){
 }
 
 function ocultarGanaste(){
-    lightboxGanaste.style.display = "none";
+    if(lightboxGanaste.style.display=="block"){
+        lightboxGanaste.style.display = "none";
+    }
 }
 
 //_____________________objetos______________________________
